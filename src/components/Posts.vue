@@ -14,6 +14,9 @@
 </template>
 
 <script>
+
+import Vue from 'vue'
+
 export default {
   name: 'posts',
   data () {
@@ -28,6 +31,25 @@ export default {
         name: 'two',
         content: 'two content'
       }]
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
+  methods: {
+    fetchData () {
+      var self = this
+      Vue.$http.get('https://iccs340-vue-api.herokuapp.com/posts.json')
+        .then(function (response) {
+          console.log(response)
+          self.posts = response.data
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
 }

@@ -6,6 +6,10 @@ import router from './router/index'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 
+import Axios from 'axios'
+
+Vue.$http = Axios
+
 Vue.use(VueMaterial)
 
 Vue.config.productionTip = false

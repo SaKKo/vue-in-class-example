@@ -1,11 +1,7 @@
 <template lang="html">
-  <div class="posts-index">
+  <div class="post-show">
     <md-list class="custom-list md-triple-line">
-      <div v-for="post in posts">
-        <router-link :to="{ name: 'Posts.show', params: { id: post.id }}">
-          <sk-post :post="post"></sk-post>
-        </router-link>
-      </div>
+      <sk-post :post="post"></sk-post>
     </md-list>
   </div>
 </template>
@@ -14,26 +10,30 @@
 import PostsApi from '@/api/posts.js'
 
 export default {
-  name: 'posts-index',
+  name: 'post-show',
   components: {
     SkPost: require('./Post.vue')
   },
   data () {
     return {
-      posts: []
+      post: {
+        name: 'loading',
+        content: ''
+      }
     }
   },
   created () {
-    this.fetchPosts()
+    this.fetchPost()
   },
   watch: {
-    '$route': 'fetchPosts'
+    '$route': 'fetchPost'
   },
   methods: {
-    fetchPosts () {
+    fetchPost () {
       var self = this
-      PostsApi.getPosts((_posts) => {
-        self.posts = _posts
+      var postId = this.$route.params.id
+      PostsApi.getPost(postId, (_post) => {
+        self.post = _post
       })
     }
   }

@@ -14,15 +14,9 @@
       </md-toolbar>
       <md-list>
         <md-list-item>
-          <router-link :to="{ name: 'Posts' }">
+          <router-link :to="{ name: 'Posts.index' }">
             <md-icon>shopping_basket</md-icon>
             <span>Posts</span>
-          </router-link>
-        </md-list-item>
-        <md-list-item>
-          <router-link :to="{ name: 'Hello' }">
-            <md-icon>shopping_basket</md-icon>
-            <span>Hello</span>
           </router-link>
         </md-list-item>
       </md-list>

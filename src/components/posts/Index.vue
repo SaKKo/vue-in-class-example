@@ -22,6 +22,9 @@ export default {
   created () {
     this.fetchPosts()
   },
+  watch: {
+    '$route': 'fetchPosts'
+  },
   methods: {
     fetchPosts () {
       var self = this

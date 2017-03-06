@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import PostsApi from '@/api/posts.js'
+
 export default {
   name: 'posts-index',
   components: {
@@ -14,16 +16,18 @@ export default {
   },
   data () {
     return {
-      posts: [
-        {
-          name: 'name 1',
-          content: 'content 1'
-        },
-        {
-          name: 'name 2',
-          content: 'content 2'
-        }
-      ]
+      posts: []
+    }
+  },
+  created () {
+    this.fetchPosts()
+  },
+  methods: {
+    fetchPosts () {
+      var self = this
+      PostsApi.getPosts((_posts) => {
+        self.posts = _posts
+      })
     }
   }
 }

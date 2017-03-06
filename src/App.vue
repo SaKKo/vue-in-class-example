@@ -12,6 +12,7 @@ export default {
     SkLeftNavigation: require('./components/LeftNavigation.vue')
   }
 }
+
 </script>
 
 <style>
